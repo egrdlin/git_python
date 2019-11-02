@@ -33,7 +33,7 @@ for word in text_list:
         user_list.append(word)
 
 user_list.sort()    # sort the user list in order
-print(user_list)
+print(user_list) 
 
 
 
