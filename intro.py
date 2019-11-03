@@ -4,13 +4,6 @@
 
 # When the program completes, sort and print the resulting words in alphabetical order.
 
-# Enter file: romeo.txt
-# ['Arise', 'But', 'It', 'Juliet', 'Who', 'already',
-# 'and', 'breaks', 'east', 'envious', 'fair', 'grief',
-# 'is', 'kill', 'light', 'moon', 'pale', 'sick', 'soft',
-# 'sun', 'the', 'through', 'what', 'window',
-# 'with', 'yonder']
-
 while True:
     try:
         filename = input("Enter the file name: ")
