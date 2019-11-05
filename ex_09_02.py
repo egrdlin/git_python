@@ -3,6 +3,8 @@
 # count of each of the days of the week. At the end of the program print out the contents of your
 #  dictionary (order does not matter).
 
+print('\033c') # clear the screen
+
 while True:
     try:
         filename = input("Enter the file name: ")
