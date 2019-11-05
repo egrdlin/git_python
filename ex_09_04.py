@@ -1,6 +1,6 @@
-# After all the data has been read and the dictionary has been created, look through
-#  the dictionary using a maximum loop (see Section [maximumloop]) to find who has the 
-# most messages and print how many messages the person has.
+# This program records the domain name (instead of the address) where the message was
+# sent from instead of who the mail came from (i.e., the whole email address). At 
+# the end of the program, print out the contents of your dictionary.
 
 
 
@@ -19,10 +19,13 @@ counts = dict()
 for line in fhand: # read through each line
     if line.startswith("From "): # if the line starts with 'from'
         line = line.split() # split string line into list, its third address is the desired infomation
-        # print(line[1])
+        email = str(line[1]) # second address of the list is the desired field - email address
+        index = email.find("@") # find the index
+        email = (email[index+1:]) 
+        print(email)
         # if this day is existed in dictionary, its count will be set to 1 as default, 
         # else, its current count increment by 1
-        counts[line[1]] = counts.get(line[1],0) + 1 
+        counts[email] = counts.get(email,0) + 1 
             
 print(counts)
 print("\n\nThe most frequent email account is:\t", max(counts, key=counts.get), 
