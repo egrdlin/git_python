@@ -7,8 +7,9 @@
 print('\033c') # clear the screen
 
 while True:
+    filename = input("Enter the file name: ")
+    if len(filename) < 1 : filename = "mbox-short.txt"
     try:
-        filename = input("Enter the file name: ")
         fhand = open(filename)
     except Exception as e:
         print("File can not be opened. Try again!")
@@ -22,7 +23,7 @@ for line in fhand: # read through each line
         email = str(line[1]) # second address of the list is the desired field - email address
         index = email.find("@") # find the index
         email = (email[index+1:]) 
-        print(email)
+        # print(email)
         # if this day is existed in dictionary, its count will be set to 1 as default, 
         # else, its current count increment by 1
         counts[email] = counts.get(email,0) + 1 
