@@ -4,8 +4,10 @@
 # letters a-z. Find text samples from several different languages and see how letter frequency 
 # varies between languages
 import time
-print('\033c')
+import matplotlib
+import matplotlib.pyplot as plt
 
+print('\033c')
 filename = input("Please enter the file name: ")
 if len(filename) < 1: filename = "romeo.txt"
 
@@ -31,29 +33,18 @@ counts = dict() # creat a dictionary to counts the frequency of each letter
 # print("Letter list: ",letter_list)
 from string import ascii_lowercase
 
-# for letter in ascii_lowercase: # counts letter frequency
-#     if letter in letter_list:
-#         print(letter)
-#         continue
+for letter in letter_list:
+    counts[letter] = counts.get(letter,0) + 1
 # // TODO: figure out a way to count the letter to 0 if they never appeared in the text
 
-for letter in letter_list:
-    # counts[letter] = counts.get(letter, 0) + 1
-    print(letter)
+for letter in ascii_lowercase: # assign value 0 for each letter that is not existed in the file
+    if letter not in counts:
+        counts[letter] = counts.get(letter,0)
 
-        
-            
-
-        
-          
-        
-        
-
-print("dictionary counts: ", counts)
-
+# print("dictionary counts: ", counts)
 counts_list = sorted(counts.items()) # items() converts the dictionary to list, which allows sorted()
-# print("list of counts: ", counts_list)
+# print("Sorted of counts: ", counts_list)
 
-# for key,val in counts_list:
-    # print(key,val)
-
+print("Result:\n")
+for key,val in counts_list:
+    print(key,val)
