@@ -7,6 +7,8 @@ import time
 import numpy as np
 import matplotlib
 import matplotlib.pyplot as plt
+matplotlib.use('TkAgg')  
+
 
 print('\033c')
 filename = input("Please enter the file name: ")
@@ -49,27 +51,32 @@ print("Result:\n")
 for key,val in counts_list:
     print(key,val)
 
+sorted_count = [tup[1] for tup in counts_list] 
+sorted_letter = [tup[0] for tup in counts_list] 
 
-plt.bar(range(len(counts)), list(counts.values()), align='center')
-plt.xticks(range(len(counts)), list(counts.keys()))
+# print(sorted_count)
+
+def autolabel(rects):
+    """Attach a text label above each bar in *rects*, displaying its height."""
+    for rect in rects:
+        height = rect.get_height()
+        plt.annotate('{}'.format(height),
+                    xy=(rect.get_x() + rect.get_width() / 2, height),
+                    xytext=(0, 3),  # 3 points vertical offset
+                    textcoords="offset points",
+                    ha='center', va='bottom')
+
+rects = plt.bar(range(len(counts)), sorted_count, align='center')
+plt.xticks(range(len(counts)), sorted_letter)
 plt.xlabel("Letter")
 plt.ylabel("Counts")
 plt.title("Letter frequency in the file")
-/**
-#FIXME:Add values and percentile to the bar plot
-# def autolabel(rects):
-#     # attach some text labels
-#     for rect in rects:
-#         height = rect.get_height()
-#         plt.text(rect.get_x() + rect.get_width()/2., 1.05*height,
-#                 '%d' % int(height),
-#                 ha='center', va='bottom')
-# rects1 = plt.bar(np.arange(len(labels)) - width/2, men_means, width, label='Men')
-# autolabel(rects1)
 
-
+autolabel(rects)
 plt.show()
 
+
+#TODO:Add values and percentile to the bar plot
 
 
 # # example program to test if the matplotlib is installed properly in the local environment
