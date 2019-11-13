@@ -5,6 +5,7 @@
 # varies between languages
 import time
 import numpy as np
+import matplotlib
 import matplotlib.pyplot as plt
 
 print('\033c')
@@ -48,8 +49,30 @@ print("Result:\n")
 for key,val in counts_list:
     print(key,val)
 
-# # test matplotlib library
-# # example data
+
+plt.bar(range(len(counts)), list(counts.values()), align='center')
+plt.xticks(range(len(counts)), list(counts.keys()))
+plt.xlabel("Letter")
+plt.ylabel("Counts")
+plt.title("Letter frequency in the file")
+/**
+#FIXME:Add values and percentile to the bar plot
+# def autolabel(rects):
+#     # attach some text labels
+#     for rect in rects:
+#         height = rect.get_height()
+#         plt.text(rect.get_x() + rect.get_width()/2., 1.05*height,
+#                 '%d' % int(height),
+#                 ha='center', va='bottom')
+# rects1 = plt.bar(np.arange(len(labels)) - width/2, men_means, width, label='Men')
+# autolabel(rects1)
+
+
+plt.show()
+
+
+
+# # example program to test if the matplotlib is installed properly in the local environment
 # x = np.arange(0.1, 4, 0.1)
 # y = np.exp(-x)
 
