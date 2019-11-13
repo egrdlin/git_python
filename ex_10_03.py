@@ -4,7 +4,7 @@
 # letters a-z. Find text samples from several different languages and see how letter frequency 
 # varies between languages
 import time
-import matplotlib
+import numpy as np
 import matplotlib.pyplot as plt
 
 print('\033c')
@@ -35,7 +35,6 @@ from string import ascii_lowercase
 
 for letter in letter_list:
     counts[letter] = counts.get(letter,0) + 1
-# // TODO: figure out a way to count the letter to 0 if they never appeared in the text
 
 for letter in ascii_lowercase: # assign value 0 for each letter that is not existed in the file
     if letter not in counts:
@@ -48,3 +47,27 @@ counts_list = sorted(counts.items()) # items() converts the dictionary to list, 
 print("Result:\n")
 for key,val in counts_list:
     print(key,val)
+
+# # test matplotlib library
+# # example data
+# x = np.arange(0.1, 4, 0.1)
+# y = np.exp(-x)
+
+# # example variable error bar values
+# yerr = 0.1 + 0.1 * np.sqrt(x)
+
+
+# # Now switch to a more OO interface to exercise more features.
+# fig, axs = plt.subplots(nrows=1, ncols=2, sharex=True)
+# ax = axs[0]
+# ax.errorbar(x, y, yerr=yerr)
+# ax.set_title('all errorbars')
+
+# ax = axs[1]
+# ax.errorbar(x, y, yerr=yerr, errorevery=5)
+# ax.set_title('only every 5th errorbar')
+
+
+# fig.suptitle('Errorbar subsampling for better appearance')
+
+# plt.show()
