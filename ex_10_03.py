@@ -7,7 +7,7 @@ import time
 import numpy as np
 import matplotlib
 import matplotlib.pyplot as plt
-matplotlib.use('TkAgg')  
+matplotlib.use('TkAgg')  # Configure the appearance of the plot
 
 
 print('\033c')
