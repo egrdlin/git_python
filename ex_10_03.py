@@ -9,6 +9,16 @@ import matplotlib
 import matplotlib.pyplot as plt
 matplotlib.use('TkAgg')  # Configure the appearance of the plot
 
+def autolabel(rects):
+    """Attach a text label above each bar in *rects*, displaying its height."""
+    for rect in rects:
+        height = rect.get_height()
+        plt.annotate('{}'.format(height),
+                    xy=(rect.get_x() + rect.get_width() / 2, height),
+                    xytext=(0, 3),  # 3 points vertical offset
+                    textcoords="offset points",
+                    ha='center', va='bottom')
+                    
 
 print('\033c')
 filename = input("Please enter the file name: ")
@@ -45,59 +55,38 @@ for letter in ascii_lowercase: # assign value 0 for each letter that is not exis
 
 # print("dictionary counts: ", counts)
 counts_list = sorted(counts.items()) # items() converts the dictionary to list, which allows sorted()
-# print("Sorted of counts: ", counts_list)
+print("Sorted of counts: ", counts_list)
 
-print("Result:\n")
-for key,val in counts_list:
-    print(key,val)
+# print("Result:\n")
+# for key,val in counts_list:
+#     print(key,val)
 
 sorted_count = [tup[1] for tup in counts_list] 
 sorted_letter = [tup[0] for tup in counts_list] 
 
 # print(sorted_count)
 
-def autolabel(rects):
-    """Attach a text label above each bar in *rects*, displaying its height."""
-    for rect in rects:
-        height = rect.get_height()
-        plt.annotate('{}'.format(height),
-                    xy=(rect.get_x() + rect.get_width() / 2, height),
-                    xytext=(0, 3),  # 3 points vertical offset
-                    textcoords="offset points",
-                    ha='center', va='bottom')
+sum_counts = sum(sorted_count)
+sorted_percentage = [(100 * x)  / sum_counts for x in sorted_count]
+sorted_percentage = [round(x,2) for x in sorted_percentage]
 
-rects = plt.bar(range(len(counts)), sorted_count, align='center')
+# construct final result structure
+result = list()
+for i in range(0,len(sorted_count)):
+    temp = (sorted_letter[i] , sorted_count[i], sorted_percentage[i])
+    result.append(temp)
+
+# rects_value = plt.bar(range(len(counts)), sorted_count, align='center') # label with count values
+rects_percentage = plt.bar(range(len(counts)), sorted_percentage, align='center') # label with percentage
+
 plt.xticks(range(len(counts)), sorted_letter)
 plt.xlabel("Letter")
 plt.ylabel("Counts")
 plt.title("Letter frequency in the file")
 
-autolabel(rects)
+print("letter|counts|percentage")
+for val, key, per in result:
+    print(val,"\t" ,key,"\t", per,"%")
+autolabel(rects_percentage)
 plt.show()
 
-
-#TODO:Add values and percentile to the bar plot
-
-
-# # example program to test if the matplotlib is installed properly in the local environment
-# x = np.arange(0.1, 4, 0.1)
-# y = np.exp(-x)
-
-# # example variable error bar values
-# yerr = 0.1 + 0.1 * np.sqrt(x)
-
-
-# # Now switch to a more OO interface to exercise more features.
-# fig, axs = plt.subplots(nrows=1, ncols=2, sharex=True)
-# ax = axs[0]
-# ax.errorbar(x, y, yerr=yerr)
-# ax.set_title('all errorbars')
-
-# ax = axs[1]
-# ax.errorbar(x, y, yerr=yerr, errorevery=5)
-# ax.set_title('only every 5th errorbar')
-
-
-# fig.suptitle('Errorbar subsampling for better appearance')
-
-# plt.show()
