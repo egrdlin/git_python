@@ -8,7 +8,8 @@ import numpy as np
 import matplotlib
 import matplotlib.pyplot as plt
 matplotlib.use('TkAgg')  # Configure the appearance of the plot
-
+#TODO: Remove number, special characters from the text file
+# so only the letter will be counted
 def autolabel(rects):
     """Attach a text label above each bar in *rects*, displaying its height."""
     for rect in rects:
