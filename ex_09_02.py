@@ -39,3 +39,16 @@ for line in fhand:  # read through each line
         counts[line[2]] = counts.get(line[2], 0) + 1
 
 print(counts)
+
+# now find the most common day
+largest = 0
+theword = None
+
+for key,val in counts.items():
+    print(key,val)
+    if val>largest: 
+        largest = val
+        theword = key
+
+print("Found:", theword,largest)
+
