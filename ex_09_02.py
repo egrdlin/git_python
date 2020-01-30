@@ -18,6 +18,16 @@ counts = dict()
 for line in fhand: # read through each line
     if line.startswith("From "): # if the line starts with 'from'
         line = line.split() # split string line into list, its third address is the desired infomation
+        # print(line)
+        
+        # line[0] - "From"
+        # line[1] - email address
+        # line[2] - day
+        # line[3] - month
+        # line[4] - date
+        # line[5] - time
+        # line[6] - year
+
         # print(line[2])
         # if this day is existed in dictionary, its count will be set to 1 as default, 
         # else, its current count increment by 1
