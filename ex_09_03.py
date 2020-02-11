@@ -6,6 +6,9 @@ print('\033c') # clear the screen
 while True:
     try:
         filename = input("Enter the file name: ")
+        if len(filename) < 1:
+            # press enter, it will open "mbox-short.txt" file by default
+            filename = "mbox-short.txt"
         fhand = open(filename)
     except Exception as e:
         print("File can not be opened. Try again!")
