@@ -2,18 +2,17 @@
 # Ask the user to enter a regular expression and count the number of lines that
 #  matched the regular expression
 import re
-
-filename = input("Please enter the file name: ")
-if len(filename) < 1: filename = "mbox.txt"
-
 while True:
-    try: 
+    try:
+        filename = input("Enter the file name:")
+        if len(filename) <1 : filename = "mbox.txt"
         fhand = open(filename)
-        print("Opening the file: ", filename, " \n\n...\n\n")
+        print("Opening file '{}'...\n".format (filename))
     except Exception as e:
-        print("File cannot be opened. Try again!")
+        print("Can't open the file")
         continue
     break
+    
 
 count = 0
 
