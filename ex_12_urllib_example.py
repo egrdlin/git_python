@@ -1,14 +1,15 @@
 import urllib.request, urllib.parse, urllib.error
+import re
 
-fhand = urllib.request.urlopen('http://data.pr4e.org/romeo.txt')
+url = input("Enter -")
+html = urllib.request.urlopen(url).read()
 
-counts = dict()
-for line in fhand:
-    words = line.decode().split()
-    for word in words:
-        counts[word] = counts.get(word, 0) + 1
-print(counts)
+# search_expression = "href=\"(http://.*?" #start with string href="(http:// with zero or more occurances, non greedy
+# links = re.findall(search_expression, html)
+
+html = urllib.request.urlopen(url).read()
+links = re.findall("href=\"(http://.*?" ,html)
 
 
-# Code: http://www.py4e.com/code3/urllib1.py
-# Or select Download from this trinket's left-
+for link in links:
+    print(link.decode())
