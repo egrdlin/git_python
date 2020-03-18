@@ -7,8 +7,7 @@ html = urllib.request.urlopen(url).read()
 # search_expression = "href=\"(http://.*?" #start with string href="(http:// with zero or more occurances, non greedy
 # links = re.findall(search_expression, html)
 
-html = urllib.request.urlopen(url).read()
-links = re.findall("href=\"(http://.*?" ,html)
+links = re.findall(b'href="(http://.*?)"' ,html)
 
 
 for link in links:
