@@ -1,14 +1,15 @@
 import urllib.request, urllib.parse, urllib.error
-import re
+from bs4 import BeautifulSoup
+import ssl
 
-url = input("Enter -")
-html = urllib.request.urlopen(url).read()
+ctx = ssl.create_default_context()
+ctx.check_hostname = False
+ctx.verify_mode = ssl.CERT_NONE
 
-# search_expression = "href=\"(http://.*?" #start with string href="(http:// with zero or more occurances, non greedy
-# links = re.findall(search_expression, html)
+url = input("Enter - ")
+html = urllib.request.urlopen(url, context=ctx).read()
+soup = BeautifulSoup(html,'html.parser')
 
-links = re.findall(b'href="(http://.*?)"' ,html)
-
-
-for link in links:
-    print(link.decode())
+tags = soup("a")
+for tag in tags:
+    print(tag.get("href", None)) #access all tags <a> with href
