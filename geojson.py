@@ -42,14 +42,26 @@ while True:
         print(data)
         continue
 
-    # print(json.dumps(js, indent=4))
+    # print(json.dumps(js, indent=4)) 
 
     lat = js['results'][0]['geometry']['location']['lat']
     lng = js['results'][0]['geometry']['location']['lng']
     add_comp = js['results'][0]['address_components']
 
-    for item in add_comp:
-        print(item)
+    add_type = add_comp[len(add_comp)-1] ['types'][0]
+    country_code = add_comp[len(add_comp)-1] ['short_name']
+
+    if add_type != "country":
+        print('\n\t\tThe address you entered does not belong to any country.')
+        print('\n\t\tAddress Type: ', add_type, '\n')
+    else:
+        print('\n\t\tTwo Letter Country Code: ', country_code)
+
+    break
+
+
+    # for item in add_comp:
+    #     print(item)
 
     # print('lat', lat, 'lng', lng)
     # location = js['results'][0]['formatted_address']
